@@ -1,0 +1,14 @@
+language: generic
+
+sudo: required
+
+services:
+    - docker
+
+before_install:
+    - docker build -t appscorico/docker-react-dev -f Dockerfile.dev .
+
+script:
+    - docker run -e CI=true appscorico/docker-react-dev npm run test
+
+    
