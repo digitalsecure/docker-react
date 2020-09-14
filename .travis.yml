@@ -11,4 +11,30 @@ before_install:
 script:
     - docker run -e CI=true appscorico/docker-react-dev npm run test
 
-    
+provider: elasticbeanstalk    
+# URL of the beanstalk instance: http://dockerreact-env.eba-pm3dkpnc.us-east-2.elasticbeanstalk.com/
+# region: <use the region as shown in the url, in the above, it will be us-east-2>
+region: "us-east-2"
+
+# app: <use the same name as that created in aws elastic beanstalk>
+app: "docker-react"
+
+# env: <Use the name of the env shown in the aws elastic beanstalk dashboard>
+env: "DockerReact-env"
+
+# bucket_name: <use the same value as the app: >
+bucket_name: "docker-react"
+
+# Deploy only codes on the master branch
+on:
+    branch: master
+
+#
+# AWS_ACCESS_ID and AWS_SECRET_KEY are environment variables defined in the Settings of the Travis CI dashboard
+#
+#
+access_key_id: $AWS_ACCESS_ID
+access_secret_key: 
+    secure: "$AWS_SECRET_KEY"
+
+
